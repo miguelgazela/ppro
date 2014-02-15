@@ -31,5 +31,6 @@ $ grunt serve
 
 ## Related Resources
 
-+ [Io programming language](http://iolanguage.org/)
++ [Io official site](http://iolanguage.org/)
++ [Io - progopedia.com](http://progopedia.com/language/io/)
 + [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/) 

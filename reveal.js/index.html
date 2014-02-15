@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Io - Programming Language Tutorial</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="description" content="A presentation about the Io programming language">
 		<meta name="author" content="Hakim El Hattab">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -25,6 +25,12 @@
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
+		<style>
+			.reveal p + p {
+				margin-top: 30px;
+			}
+		</style>
+
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -41,20 +47,47 @@
 					<p>
 						<small>Created by <a href="#">Miguel Oliveira</a> / <a href="#">Nélson Mendes</a></small>
 					</p>
+					<p>
+						<small>PPRO 2014</small>
+					</p>
 				</section>
 
 				<section>
 					<h2>Paradigm(s)</h2>
 					<p>
-						Io is a pure object-oriented programming language with a prototype-based object model.
+						Io is a pure object-oriented programming language with a dynamic prototype-based object model.
 					</p>
 
 					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+						Object-oriented: paradigma que representa conceitos como "objetos" que têm atributos que o descrevem e métodos associados. Os objetos são instâncias de classes.
+						Prototype-based: estilo de programação orientada a objetos onde a herança é realizada através da cópia de objetos existentes que servem de protótipos.
 					</aside>
 				</section>
 
+				<section>
+					<h2>History</h2>
+					<p>Developed in 2002 by <a href="https://twitter.com/stevedekorte">@stevedekorte</a></p>
+					<p>Tried to help a friend with his language, didn't know much about how languages worked</p>
+					<p>Self-education project, to combine best features of several languages and to be as lightweight as possible</p>
+				</section>
 
+				<section>
+					<h2>Inspiration</h2>
+					<p>The ideas in Io are mostly inspired by</p>
+					<p><a href="http://en.wikipedia.org/wiki/Smalltalk">Smalltalk</a> (all values are objects and dynamic typing)</p>
+					<p class="fragment"><a href="http://en.wikipedia.org/wiki/Self_(programming_language)">Self</a> (prototype-based)</p>
+					<p class="fragment"><a href="http://en.wikipedia.org/wiki/NewtonScript">NewtonScript</a> (differential inheritance)</p>
+					<p class="fragment"><a href="http://en.wikipedia.org/wiki/Actor_model_middle_history#Actor_programming_languages">Act1</a> (actors and futures for concurrency)</p>
+					<p class="fragment"><a href="http://progopedia.com/language/lisp/">Lisp</a> (code represented as tree, modifiable at runtime)</p>
+					<p class="fragment"><a href="http://en.wikipedia.org/wiki/Lua_(programming_language)">Lua</a> (small, embeddable)</p>
+
+					<aside class="notes">
+						Smalltalk - até valores primitivos são objetos e interagem trocando mensagens
+						Self - 
+						NewtonScript - herança diferencial significa que, como os objetos são todos derivados de outros, apenas se guarda a diferença entre eles. Ou seja, cada objeto tem uma referência para o seu protótipo e as propriedades em que difere dele.
+					</aside>
+
+				</section>
 
 				<!-- Example of nested vertical slides -->
 				<section>
