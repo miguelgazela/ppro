@@ -57,7 +57,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 $ mkvirtualenv proteylysis
 ```
 
-5. Navigate to the project folder
+5. Navigate to the repo folder
 ```sh
 $ cd ppro
 ```
@@ -65,6 +65,24 @@ $ cd ppro
 6. Install dependencies
 ```sh
 $ pip install -r requirements.txt
+```
+
+7. Install [Postgres.app](http://postgresapp.com/) and start it
+
+8. Navigate to the project folder
+```sh
+$ cd proteilysis
+```
+
+9. Sync database and run migrations
+```sh
+$ python manage.py syncdb
+$ python manage.py migrate protein_folding_analysis
+```
+
+10. Start local server
+```sh
+$ python manage.py runserver
 ```
 
 ## Related Resources
