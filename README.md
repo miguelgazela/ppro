@@ -12,25 +12,64 @@ Tutorial about the [Io](http://iolanguage.org/) programming language. Uses the [
 
 1. Install [Node.js](http://nodejs.org/) and [Grunt](http://gruntjs.com/getting-started#installing-the-cli)
 
-2. Install dependencies
+2. Navigate to the project folder
+```sh
+$ cd ppro
+```
+
+3. Install dependencies
 ```sh
 $ npm install
 ```
 
-3. Navigate to the reveal.js directory
+4. Navigate to the reveal.js directory
 ```sh
 $ cd reveal.js
 ```
 
-4. Serve the presentation and monitor source files for changes
+5. Serve the presentation and monitor source files for changes
 ```sh
 $ grunt serve
 ```
 
-5. Open [http://localhost:8000](http://localhost:8000) to view your presentation
+6. Open [http://localhost:8000](http://localhost:8000) to view your presentation
+
+## Protein Folding Analysis - Proteilysis.com
+
+### Installation
+
+1. Install [pip](http://pip.readthedocs.org/en/latest/installing.html), 
+
+2. Install [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)
+```sh
+$ pip install virtualenvwrapper
+```
+
+3. After virtualenvwrapper is installed, add the following to your .bash_profile
+```sh
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/directory-you-do-development-in
+source /usr/local/bin/virtualenvwrapper.sh
+```
+
+4. Create a new virtual environment
+```sh
+$ mkvirtualenv proteylysis
+```
+
+5. Navigate to the project folder
+```sh
+$ cd ppro
+```
+
+6. Install dependencies
+```sh
+$ pip install -r requirements.txt
+```
 
 ## Related Resources
 
++ [Starting a Django project the right way](http://www.jeffknupp.com/blog/2013/12/18/starting-a-django-16-project-the-right-way/)
 + [Io official site](http://iolanguage.org/)
 + [Io - progopedia.com](http://progopedia.com/language/io/)
 + [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/) 

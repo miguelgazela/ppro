@@ -66,7 +66,6 @@ class PDBParser(object):
         self.sheets = []
 
         for record in self.sheets_records:
-            print record
             strand = int(record[7:10])
             sheetID = record[11:14]
             numStrands = int(record[14:16])
@@ -79,22 +78,29 @@ class PDBParser(object):
             endSeqNum = int(record[33:37])
             endICode = record[37]
             sense = int(record[38:40])
-            curAtom = record[41:45]
-            curResName = record[45:48]
-            curChainID = record[49]
-            curResSeq = int(record[50:54])
-            curICode = record[54]
-            prevAtom = record[56:60]
-            prevResName = record[60:63]
-            prevChainID = record[64]
-            prevResSeq = int(record[65:69])
-            prevICode = record[69]
 
-            sheet = Sheet(strand, sheetID, numStrands, initResName,
-                initChainID, initSeqNum, initICode, endResName, endChainID,
-                endSeqNum, endICode, sense, curAtom, curResName, curChainID, 
-                curResSeq, curICode, prevAtom, prevResName, prevChainID, 
-                prevResSeq, prevICode)
+            if sense != 0:
+                curAtom = record[41:45]
+                curResName = record[45:48]
+                curChainID = record[49]
+                curResSeq = int(record[50:54])
+                curICode = record[54]
+                prevAtom = record[56:60]
+                prevResName = record[60:63]
+                prevChainID = record[64]
+                prevResSeq = int(record[65:69])
+                # prevICode = record[69]
+                prevICode = "" # TODO
+
+                sheet = Sheet(strand, sheetID, numStrands, initResName,
+                    initChainID, initSeqNum, initICode, endResName, endChainID,
+                    endSeqNum, endICode, sense, curAtom, curResName, curChainID, 
+                    curResSeq, curICode, prevAtom, prevResName, prevChainID, 
+                    prevResSeq, prevICode)
+            else:
+                sheet = Sheet(strand, sheetID, numStrands, initResName,
+                    initChainID, initSeqNum, initICode, endResName, endChainID,
+                    endSeqNum, endICode, sense)
 
             self.sheets.append(sheet)
 
@@ -129,8 +135,9 @@ class Sheet(object):
 
     def __init__(self, strand, sheetID, numStrands, initResName, initChainID,
             initSeqNum, initICode, endResName, endChainID, endSeqNum, endICode,
-            sense, curAtom, curResName, curChainID, curResSeq, curICode, prevAtom,
-            prevResName, prevChainID, prevResSeq, prevICode):
+            sense, curAtom="", curResName="", curChainID="", curResSeq="",
+            curICode="", prevAtom="", prevResName="", prevChainID="",
+            prevResSeq="", prevICode=""):
         self.strand = strand
         self.sheetID = sheetID
         self.numStrands = numStrands

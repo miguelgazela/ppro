@@ -1,5 +1,5 @@
 """
-Python API for Hacker News.
+Python PDB files Parser
 @author Miguel Oliveira
 @email miguel.gazela@gmail.com
 
