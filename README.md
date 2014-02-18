@@ -8,7 +8,7 @@ Programming Paradigms class materials.
 Tutorial about the [Io](http://iolanguage.org/) programming language. Uses the [reveal.js](https://github.com/hakimel/reveal.js) html presentation framework.
 
 
-### Usage
+### Installation
 
 1. Install [Node.js](http://nodejs.org/) and [Grunt](http://gruntjs.com/getting-started#installing-the-cli)
 
