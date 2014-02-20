@@ -82,7 +82,8 @@ class PDBParser(object):
             elif serNum == 1:
                 rec_residues = 13
             else:
-                rec_residues = numRes - ( 13 * (serNum - 1))  # TODO bug, needs to use modulo 13
+                read = 13 * (serNum - 1)
+                rec_residues = ( numRes - read <= 13 ) and (numRes - read) or 13
 
             residues = []
             for i in range(rec_residues):
