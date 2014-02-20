@@ -1,10 +1,10 @@
 """
 Python PDB files Parser
-@author Miguel Oliveira
-@email miguel.gazela@gmail.com
+@author Miguel Oliveira & Nelson Mendes
+@email miguel.gazela@gmail.com & 
 
 The MIT License (MIT)
-Copyright (c) 2013 Karan Goel
+Copyright (c) 2014 Miguel Oliveira & Nelson Mendes
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

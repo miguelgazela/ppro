@@ -38,7 +38,7 @@ $ grunt serve
 
 ### Installation
 
-1. Install [pip](http://pip.readthedocs.org/en/latest/installing.html), 
+1. Install [pip](http://pip.readthedocs.org/en/latest/installing.html)
 
 2. Install [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)
 ```sh
