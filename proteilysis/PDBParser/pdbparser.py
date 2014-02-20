@@ -9,20 +9,24 @@ class PDBParser(object):
         self.content = content
         self.helices_records = []
         self.sheets_records = []
+        self.sequence_records = []
 
         lines = content.splitlines()
 
         for line in lines:
             line = line.strip()
-            record_name = line[0:5]
+            record_name = line[0:6]
 
-            if record_name == 'HELIX':
+            if record_name == 'HELIX ':
                 self.helices_records.append(line)
-            elif record_name == 'SHEET':
-                self.sheets_records.append(line) 
+            elif record_name == 'SHEET ':
+                self.sheets_records.append(line)
+            elif record_name == 'SEQRES':
+                self.sequence_records.append(line)
 
         self._build_helices()
         self._build_sheets()
+        self._build_sequence()
 
 
     def _build_helices(self):
@@ -55,9 +59,39 @@ class PDBParser(object):
 
             helix = Helix(serNum, helixID, initResName, initChainID,
                 initSeqNum, initICode, endResName, endChainID,
-                endSeqNum, endICode, helixClass, comment, length)
+                endSeqNum, endICode, helixClass, comment, length
+            )
             self.helices.append(helix)
 
+
+    def _build_sequence(self):
+        """
+        Parses the sequence records and builds a Sequence object
+        """
+        self.sequence = []
+
+        for record in self.sequence_records:
+
+            print record
+            serNum = int(record[7:10])
+            chainID = record[11]
+            numRes = int(record[13:17])
+
+            if numRes <= 13:
+                rec_residues = numRes
+            elif serNum == 1:
+                rec_residues = 13
+            else:
+                rec_residues = numRes - ( 13 * (serNum - 1))  # TODO bug, needs to use modulo 13
+
+            residues = []
+            for i in range(rec_residues):
+                residues.append(record[(19 + 4 * i):(22 + 4 * i)])
+
+            seq = {'serNum': serNum, 'chainID': chainID, 'numRes': numRes,
+                    'residues': residues}
+
+            self.sequence.append(seq)
 
     def _build_sheets(self):
         """
@@ -90,17 +124,19 @@ class PDBParser(object):
                 prevChainID = record[64]
                 prevResSeq = int(record[65:69])
                 # prevICode = record[69]
-                prevICode = "" # TODO
+                prevICode = ""  # TODO
 
                 sheet = Sheet(strand, sheetID, numStrands, initResName,
                     initChainID, initSeqNum, initICode, endResName, endChainID,
-                    endSeqNum, endICode, sense, curAtom, curResName, curChainID, 
+                    endSeqNum, endICode, sense, curAtom, curResName, curChainID,
                     curResSeq, curICode, prevAtom, prevResName, prevChainID, 
-                    prevResSeq, prevICode)
+                    prevResSeq, prevICode
+                )
             else:
                 sheet = Sheet(strand, sheetID, numStrands, initResName,
                     initChainID, initSeqNum, initICode, endResName, endChainID,
-                    endSeqNum, endICode, sense)
+                    endSeqNum, endICode, sense
+                )
 
             self.sheets.append(sheet)
 
@@ -128,6 +164,10 @@ class Helix(object):
         self.comment = comment
         self.length = length
 
+
+    def __repr__(self):
+        return "Helix"  # TODO temporary
+
 class Sheet(object):
     """
     Represents a sheet record of the pdb file
@@ -153,3 +193,7 @@ class Sheet(object):
         self.prevChainID = prevChainID
         self.prevResSeq = prevResSeq
         self.prevICode = prevICode
+
+
+    def __repr__(self):
+        return "Sheet"  # TODO temporary

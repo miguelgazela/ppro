@@ -28,3 +28,4 @@ SOFTWARE.
 """
 
 from pdbparser import PDBParser
+from utils import fetch_pdb_file
