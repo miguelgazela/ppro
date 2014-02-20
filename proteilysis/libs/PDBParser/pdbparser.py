@@ -69,6 +69,8 @@ class PDBParser(object):
         Parses the sequence records and builds a Sequence object
         """
         self.sequence = []
+        INITIAL_COLUMN = 19
+        FINAL_COLUMN = 22
 
         for record in self.sequence_records:
 
@@ -83,15 +85,17 @@ class PDBParser(object):
                 rec_residues = 13
             else:
                 read = 13 * (serNum - 1)
-                rec_residues = ( numRes - read <= 13 ) and (numRes - read) or 13
+                rec_residues = (numRes - read <= 13) and (numRes - read) or 13
 
             residues = []
             for i in range(rec_residues):
-                residues.append(record[(19 + 4 * i):(22 + 4 * i)])
+                residues.append(
+                    record[(INITIAL_COLUMN + 4 * i):(FINAL_COLUMN + 4 * i)])
 
-            seq = {'serNum': serNum, 'chainID': chainID, 'numRes': numRes,
-                    'residues': residues}
-
+            seq = {
+                'serNum': serNum, 'chainID': chainID,
+                'numRes': numRes, 'residues': residues
+            }
             self.sequence.append(seq)
 
     def _build_sheets(self):
