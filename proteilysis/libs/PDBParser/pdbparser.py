@@ -73,8 +73,6 @@ class PDBParser(object):
         FINAL_COLUMN = 22
 
         for record in self.sequence_records:
-
-            print record
             serNum = int(record[7:10])
             chainID = record[11]
             numRes = int(record[13:17])

@@ -7,6 +7,16 @@
                 width: 960px;
                 margin: 0 auto;
             }
+
+            form {
+                width: 200px;
+                margin: 0 auto;
+            }
+
+            form > div,
+            form > div > input[type='text'] {
+                width: 100%;
+            }
         </style>
 
     </head>
@@ -17,11 +27,20 @@
             <hr>
             <form action="" method="POST">
                 {% csrf_token %}
-                <input type="text" name="protein_id" placeholder="Protein ID">
-                <input type="submit">
+                <div>
+                    <input type="text" name="protein_id" placeholder="Protein ID">
+                </div>
+                <div>
+                     <input type="submit">
+                </div>
             </form>
             <hr>
-            <h3>{{id}}</h3>
+            <h3>{{pdb.id}} - {{pdb.title}}</h3>
+            <p>Number of residues: {{pdb.nr_residues}}</p>
+            <p>Number of atoms: {{pdb.nr_atoms}}</p>
+            <p>Structure authors: {{pdb.structure_authors}}</p>
+            <p>Keywords: {{pdb.keywords}}</p>
+            <hr>
             <pre>
                 {{data}}
             </pre>
