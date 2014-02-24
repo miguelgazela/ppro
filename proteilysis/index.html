@@ -12,11 +12,6 @@
                 width: 200px;
                 margin: 0 auto;
             }
-
-            form > div,
-            form > div > input[type='text'] {
-                width: 100%;
-            }
         </style>
 
     </head>
@@ -42,7 +37,16 @@
             <p>Keywords: {{pdb.keywords}}</p>
             <hr>
             <pre>
-                {{data}}
+                <h1>Sequence</h1>
+                {{sequence}}
+            </pre>
+            <pre>
+                <h1>Helices</h1>
+                {{helices}}
+            </pre>
+            <pre>
+                <h1>Sheets</h1>
+                {{sheets}}
             </pre>
         </div>
     </body>
