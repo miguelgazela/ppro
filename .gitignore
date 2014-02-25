@@ -1,4 +1,4 @@
 *.pyc
 *.pyo
-pdb_files/
 data
+pdb_*/
