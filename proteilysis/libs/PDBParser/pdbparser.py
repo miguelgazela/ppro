@@ -47,6 +47,7 @@ class PDBParser(object):
             inc += 1
 
             helix = {
+                'serNum': serNum,
                 'helixID': record[11:14],
                 'initResName': record[15:18],
                 'initChainID': record[19],
@@ -119,16 +120,18 @@ class PDBParser(object):
             }
             
             if sheet['sense'] != 0:
-                sheet['curAtom'] = record[41:45],
-                sheet['curResName'] = record[45:48],
-                sheet['curChainID'] = record[49],
-                sheet['curResSeq'] = int(record[50:54]),
-                sheet['curICode'] = record[54],
-                sheet['prevAtom'] = record[56:60],
-                sheet['prevResName'] = record[60:63],
-                sheet['prevChainID'] = record[64],
-                sheet['prevResSeq'] = int(record[65:69]),
-                # prevICode: record[69]
-                sheet['prevICode'] = ""  # TODO
+                sheet['curAtom'] = record[41:45]
+                sheet['curResName'] = record[45:48]
+                sheet['curChainID'] = record[49]
+                sheet['curResSeq'] = int(record[50:54])
+                sheet['curICode'] = record[54]
+                sheet['prevAtom'] = record[56:60]
+                sheet['prevResName'] = record[60:63]
+                sheet['prevChainID'] = record[64]
+                sheet['prevResSeq'] = int(record[65:69])
+                try:
+                    sheet['prevICode'] = record[69]
+                except IndexError:
+                    sheet['prevICode'] = ''
 
             self.sheets.append(sheet)

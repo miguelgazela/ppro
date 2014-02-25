@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import requests
+import re
 from constants import BASE_URL, NO_SUCH_FILE_URL
 
 def fetch_pdb_file(id):
@@ -24,7 +25,8 @@ def parse_pisces_file(filename):
     try:
         with open(filename) as fin:
             lines = fin.read().splitlines()
-            return [line.strip()[:4] for line in lines]
+            return [line.strip()[:4]
+                        for line in lines if re.search('^[A-Z0-9]{5}', line)]
     except IOError:
         return None
 

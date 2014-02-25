@@ -3,11 +3,11 @@
 import os
 from sys import argv
 from libs.PDBParser import utils
-from config import config
+import config
 
 
 def usage():
-    print "USAGE: script1.py [filename]"
+    print "USAGE: fetchListPDBFiles.py [filename]"
 
 
 def main():
@@ -21,8 +21,8 @@ def main():
         return -1
 
     # if not exists create dir for pdb_files
-    if not os.path.isdir(config['PDB_FILE_DIR']):
-        os.mkdir(config['PDB_FILE_DIR'])
+    if not os.path.isdir(config.PATHS['PDB_FILE_DIR']):
+        os.mkdir(config.PATHS['PDB_FILE_DIR'])
 
     # get each pdb file from rcsb.org
     counter = 1
@@ -31,11 +31,11 @@ def main():
 
         # check if file existed
         if content:
-            with open(os.path.join(config['PDB_FILE_DIR'],
+            with open(os.path.join(config.PATHS['PDB_FILE_DIR'],
                         struct_id), 'w') as fout:
                 fout.write(content)
 
-            if config['DEBUG']:
+            if config.DEBUG:
                 print "Fetched {0} - {1}/{2}".format(struct_id, 
                                                 counter,len(ids))
                 counter += 1
