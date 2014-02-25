@@ -1,3 +1,6 @@
+import re
+
+
 class PDBParser(object):
     """
     Class responsible for parsing the content of a pdb file.
@@ -15,13 +18,12 @@ class PDBParser(object):
 
         for line in lines:
             line = line.strip()
-            record_name = line[0:6]
 
-            if record_name == 'HELIX ':
+            if re.search('^HELIX', line):
                 self.helices_records.append(line)
-            elif record_name == 'SHEET ':
+            elif re.search('^SHEET', line):
                 self.sheets_records.append(line)
-            elif record_name == 'SEQRES':
+            elif re.search('^SEQRES', line):
                 self.sequence_records.append(line)
 
         self._build_helices()
@@ -44,23 +46,20 @@ class PDBParser(object):
                 raise Exception
             inc += 1
 
-            helixID = record[11:14]
-            initResName = record[15:18]
-            initChainID = record[19]
-            initSeqNum = int(record[21:25])
-            initICode = record[25]
-            endResName = record[27:30]
-            endChainID = record[31]
-            endSeqNum = int(record[33:37])
-            endICode = record[37]
-            helixClass = int(record[38:40])
-            comment = record[40:70]
-            length = int(record[71:76])
-
-            helix = Helix(serNum, helixID, initResName, initChainID,
-                initSeqNum, initICode, endResName, endChainID,
-                endSeqNum, endICode, helixClass, comment, length
-            )
+            helix = {
+                'helixID': record[11:14],
+                'initResName': record[15:18],
+                'initChainID': record[19],
+                'initSeqNum': int(record[21:25]),
+                'initICode': record[25],
+                'endResName': record[27:30],
+                'endChainID': record[31],
+                'endSeqNum': int(record[33:37]),
+                'endICode': record[37],
+                'helixClass': int(record[38:40]),
+                'comment': record[40:70],
+                'length': int(record[71:76])
+            }
             self.helices.append(helix)
 
 
@@ -103,100 +102,33 @@ class PDBParser(object):
         self.sheets = []
 
         for record in self.sheets_records:
-            strand = int(record[7:10])
-            sheetID = record[11:14]
-            numStrands = int(record[14:16])
-            initResName = record[17:20]
-            initChainID = record[21]
-            initSeqNum = int(record[22:26])
-            initICode = record[26]
-            endResName = record[28:31]
-            endChainID = record[32]
-            endSeqNum = int(record[33:37])
-            endICode = record[37]
-            sense = int(record[38:40])
 
-            if sense != 0:
-                curAtom = record[41:45]
-                curResName = record[45:48]
-                curChainID = record[49]
-                curResSeq = int(record[50:54])
-                curICode = record[54]
-                prevAtom = record[56:60]
-                prevResName = record[60:63]
-                prevChainID = record[64]
-                prevResSeq = int(record[65:69])
-                # prevICode = record[69]
-                prevICode = ""  # TODO
-
-                sheet = Sheet(strand, sheetID, numStrands, initResName,
-                    initChainID, initSeqNum, initICode, endResName, endChainID,
-                    endSeqNum, endICode, sense, curAtom, curResName, curChainID,
-                    curResSeq, curICode, prevAtom, prevResName, prevChainID, 
-                    prevResSeq, prevICode
-                )
-            else:
-                sheet = Sheet(strand, sheetID, numStrands, initResName,
-                    initChainID, initSeqNum, initICode, endResName, endChainID,
-                    endSeqNum, endICode, sense
-                )
+            sheet  = {
+                'strand': int(record[7:10]),
+                'sheetID': record[11:14],
+                'numStrands': int(record[14:16]),
+                'initResName': record[17:20],
+                'initChainID': record[21],
+                'initSeqNum': int(record[22:26]),
+                'initICode': record[26],
+                'endResName': record[28:31],
+                'endChainID': record[32],
+                'endSeqNum': int(record[33:37]),
+                'endICode': record[37],
+                'sense': int(record[38:40]),
+            }
+            
+            if sheet['sense'] != 0:
+                sheet['curAtom'] = record[41:45],
+                sheet['curResName'] = record[45:48],
+                sheet['curChainID'] = record[49],
+                sheet['curResSeq'] = int(record[50:54]),
+                sheet['curICode'] = record[54],
+                sheet['prevAtom'] = record[56:60],
+                sheet['prevResName'] = record[60:63],
+                sheet['prevChainID'] = record[64],
+                sheet['prevResSeq'] = int(record[65:69]),
+                # prevICode: record[69]
+                sheet['prevICode'] = ""  # TODO
 
             self.sheets.append(sheet)
-
-
-
-class Helix(object):
-    """
-    Represents a helix record of the pdb file
-    """
-
-    def __init__(self, serNum, helixID, initResName, initChainID, initSeqNum, 
-            initICode, endResName, endChainID, endSeqNum, endICode, helixClass,
-            comment, length):
-        self.serNum = serNum
-        self.helixID = helixID
-        self.initResName = initResName
-        self.initChainID = initChainID
-        self.initSeqNum = initSeqNum
-        self.initICode = initICode
-        self.endResName = endResName
-        self.endChainID = endChainID
-        self.endSeqNum = endSeqNum
-        self.endICode = endICode
-        self.helixClass = helixClass
-        self.comment = comment
-        self.length = length
-
-
-    def __repr__(self):
-        return "Helix"  # TODO temporary
-
-class Sheet(object):
-    """
-    Represents a sheet record of the pdb file
-    """
-
-    def __init__(self, strand, sheetID, numStrands, initResName, initChainID,
-            initSeqNum, initICode, endResName, endChainID, endSeqNum, endICode,
-            sense, curAtom="", curResName="", curChainID="", curResSeq="",
-            curICode="", prevAtom="", prevResName="", prevChainID="",
-            prevResSeq="", prevICode=""):
-        self.strand = strand
-        self.sheetID = sheetID
-        self.numStrands = numStrands
-        self.initResName = initResName
-        self.initChainID = initChainID
-        self.initSeqNum = initSeqNum
-        self.initICode = initICode
-        self.endResName = endResName
-        self.endChainID = endChainID
-        self.endSeqNum = endSeqNum
-        self.endICode = endICode
-        self.prevResName = prevResName
-        self.prevChainID = prevChainID
-        self.prevResSeq = prevResSeq
-        self.prevICode = prevICode
-
-
-    def __repr__(self):
-        return "Sheet"  # TODO temporary
