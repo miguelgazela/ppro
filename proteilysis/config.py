@@ -22,7 +22,9 @@ PATHS = {
 # Database settings
 
 DATABASE = {
-    'host': 'localhost',
+    'name': 'proteilysis',
     'username': 'root',
-    'password': 'BKsrUgn6',
+    'root_pass': 'BKsrUgn6',
+    'db_user': 'user1',
+    'db_user_pass': 'password',
 }
