@@ -2,6 +2,7 @@
 
 DEBUG = True
 
+
 PATHS = {
     'PDB_FILE_DIR': 'pdb_files',
     'PARSED_INFO_DIRS': [
@@ -17,11 +18,13 @@ PATHS = {
 
 FILENAMES = {
     'PROTEINS_SQL': 'db_proteins.sql',
+    'HELICES_SQL': 'db_helices.sql',
 }
 
 
 SQL_TEMPLATES = {
     'INSERT_PROTEIN': "INSERT INTO Protein (structureID, pdbPath) VALUES ('{0}', '{1}');\n",
+    'INSERT_HELIX': "INSERT INTO Helix (proteinID, helixClass, endICode, helixID, endSeqNum, initSeqNum, initResName, serNum, initChainID, initICode, length, endChainID, endResName, type) VALUES ({proteinID}, {helixClass}, '{endICode}', '{helixID}', {endSeqNum}, {initSeqNum}, '{initResName}', {serNum}, '{initChainID}', '{initICode}', {length}, '{endChainID}', '{endResName}', '{type}');\n"
 }
 
 
