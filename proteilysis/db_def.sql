@@ -9,6 +9,8 @@ drop table if exists Sequence;
 
 create table Protein (
     id          SERIAL,
+    structureID VARCHAR(4) NOT NULL,
+    pdbPath     VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -29,7 +31,10 @@ create table Helix (
     endChainID  CHAR(1) NOT NULL,
     endResName  VARCHAR(3) NOT NULL,
     type        enum('Right-handed alpha (default)', 'Right-handed omega', 'Right-handed pi', 'Right-handed gamma', 'Right-handed 3 - 10', 'Left-handed alpha', 'Left-handed omega', 'Left-handed gamma', '2 - 7 ribbon/helix', 'Polyproline') NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    FOREIGN KEY (proteinID)
+        REFERENCES Protein(id)
+        ON DELETE CASCADE
 );
 
 create table Sheet (
@@ -57,7 +62,10 @@ create table Sheet (
     prevChainID CHAR(1),
     prevResSeq  INT UNSIGNED,
     prevICode   CHAR(1),
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    FOREIGN KEY (proteinID)
+        REFERENCES Protein(id)
+        ON DELETE CASCADE
 );
 
 create table Sequence (
@@ -67,5 +75,8 @@ create table Sequence (
     chainID     CHAR(1) NOT NULL,
     numRes      INT UNSIGNED NOT NULL,
     Residues    VARCHAR(51) NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    FOREIGN KEY (proteinID)
+        REFERENCES Protein(id)
+        ON DELETE CASCADE
 );
