@@ -29,8 +29,5 @@ def main():
             user_pass=config.DATABASE['db_user_pass'],
             root_pass=config.DATABASE['root_pass']), shell=True)
 
-    # create database tables
-    call('python create_db_tables.py', shell=True)
-
 if __name__ == "__main__":
     main()

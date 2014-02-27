@@ -6,6 +6,7 @@ import json
 
 
 HELIX_TYPES = {
+    '0': 'Right-handed alpha (default)',
     '1': 'Right-handed alpha (default)',
     '2': 'Right-handed omega',
     '3': 'Right-handed pi',

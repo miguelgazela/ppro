@@ -2,10 +2,10 @@
 #                 PROTEINS AND COMPONENTS 
 #--------------------------------------------------------
 
-drop table if exists Protein;
 drop table if exists Helix;
 drop table if exists Sheet;
 drop table if exists Sequence;
+drop table if exists Protein;
 
 create table Protein (
     id          SERIAL,
@@ -27,7 +27,7 @@ create table Helix (
     serNum      INT UNSIGNED NOT NULL,
     initChainID CHAR(1) NOT NULL,
     initICode   CHAR(1) NOT NULL,
-    lenght      INT UNSIGNED NOT NULL,
+    length      INT UNSIGNED NOT NULL,
     endChainID  CHAR(1) NOT NULL,
     endResName  VARCHAR(3) NOT NULL,
     type        enum('Right-handed alpha (default)', 'Right-handed omega', 'Right-handed pi', 'Right-handed gamma', 'Right-handed 3 - 10', 'Left-handed alpha', 'Left-handed omega', 'Left-handed gamma', '2 - 7 ribbon/helix', 'Polyproline') NOT NULL,
@@ -51,7 +51,7 @@ create table Sheet (
     endChainID  CHAR(1) NOT NULL,
     endSeqNUm   INT UNSIGNED NOT NULL,
     endICode    CHAR(1) NOT NULL,
-    sense       INT UNSIGNED NOT NULL,
+    sense       TINYINT NOT NULL,
     curAtom     VARCHAR(3),
     curResName  VARCHAR(3),
     curChainID  CHAR(1),
