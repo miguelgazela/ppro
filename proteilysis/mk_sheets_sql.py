@@ -14,7 +14,7 @@ def main():
 
                     try:
                         sheets = json.loads(fin.read())
-                    except ValueError:
+                    except ValueError:  # ignore not json files
                         continue
 
                     for sheet in sheets:

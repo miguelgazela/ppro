@@ -25,7 +25,11 @@ def main():
             for filename in files:
                 with open(os.path.join(config.PATHS['HELICES_DIR'], 
                             filename)) as fin:
-                    protein_helices = json.loads(fin.read())
+
+                    try:
+                        protein_helices = json.loads(fin.read())
+                    except ValueError:  # ignore not json files
+                        continue
 
                     for helix in protein_helices:
 

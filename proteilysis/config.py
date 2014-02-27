@@ -20,6 +20,7 @@ FILENAMES = {
     'PROTEINS_SQL': 'db_proteins.sql',
     'HELICES_SQL': 'db_helices.sql',
     'SHEETS_SQL': 'db_sheets.sql',
+    'SEQ_SQL': 'db_sequences.sql',
 }
 
 
@@ -29,7 +30,9 @@ SQL_TEMPLATES = {
     'INSERT_HELIX': "INSERT INTO Helix (proteinID, helixClass, endICode, helixID, endSeqNum, initSeqNum, initResName, serNum, initChainID, initICode, length, endChainID, endResName, type) VALUES ({proteinID}, {helixClass}, '{endICode}', '{helixID}', {endSeqNum}, {initSeqNum}, '{initResName}', {serNum}, '{initChainID}', '{initICode}', {length}, '{endChainID}', '{endResName}', '{type}');\n",
 
     'INSERT_COMPLETE_SHEET': "INSERT INTO Sheet (proteinID, strand, sheetID, numStrands, initResName, initChainID, initSeqNum, initICode, endResName, endChainID, endSeqNum, endICode, sense, curAtom, curResName, curChainID, curResSeq, curICode, prevAtom, prevResName, prevChainID, prevResSeq, prevICode) VALUES ({proteinID}, {strand}, '{sheetID}', {numStrands}, '{initResName}', '{initChainID}', {initSeqNum}, '{initICode}', '{endResName}', '{endChainID}', {endSeqNum}, '{endICode}', {sense}, '{curAtom}', '{curResName}', '{curChainID}', {curResSeq}, '{curICode}', '{prevAtom}', '{prevResName}', '{prevChainID}', {prevResSeq}, '{prevICode}');\n",
-    'INSERT_INCOMPLETE_SHEET': "INSERT INTO Sheet (proteinID, strand, sheetID, numStrands, initResName, initChainID, initSeqNum, initICode, endResName, endChainID, endSeqNum, endICode, sense) VALUES ({proteinID}, {strand}, '{sheetID}', {numStrands}, '{initResName}', '{initChainID}', {initSeqNum}, '{initICode}', '{endResName}', '{endChainID}', {endSeqNum}, '{endICode}', {sense});\n"
+    'INSERT_INCOMPLETE_SHEET': "INSERT INTO Sheet (proteinID, strand, sheetID, numStrands, initResName, initChainID, initSeqNum, initICode, endResName, endChainID, endSeqNum, endICode, sense) VALUES ({proteinID}, {strand}, '{sheetID}', {numStrands}, '{initResName}', '{initChainID}', {initSeqNum}, '{initICode}', '{endResName}', '{endChainID}', {endSeqNum}, '{endICode}', {sense});\n",
+
+    'INSERT_SEQ': "INSERT INTO Sequence (proteinID, serNum, chainID, numRes, residues) VALUES ({proteinID}, {serNum}, '{chainID}', {numRes}, '{residues}');\n"
 }
 
 
