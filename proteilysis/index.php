@@ -1,7 +1,7 @@
 <?php
     ini_set('display_errors', 'On');
 
-    require 'Slim/Slim.php';
+    require 'libs/Slim/Slim.php';
     \Slim\Slim::registerAutoloader();
 
     $app = new \Slim\Slim(array(
