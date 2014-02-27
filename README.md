@@ -67,27 +67,8 @@ $ cd ppro
 $ pip install -r requirements.txt
 ```
 
-7. Install [Postgres.app](http://postgresapp.com/) and start it
-
-8. Navigate to the project folder
-```sh
-$ cd proteilysis
-```
-
-9. Sync database and run migrations
-```sh
-$ python manage.py syncdb
-$ python manage.py migrate protein_folding_analysis
-```
-
-10. Start local server
-```sh
-$ python manage.py runserver
-```
-
 ## Related Resources
 
-+ [Starting a Django project the right way](http://www.jeffknupp.com/blog/2013/12/18/starting-a-django-16-project-the-right-way/)
 + [Io official site](http://iolanguage.org/)
 + [Io - progopedia.com](http://progopedia.com/language/io/)
 + [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/) 
