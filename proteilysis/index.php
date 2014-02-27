@@ -1,8 +1,22 @@
 <?php
     ini_set('display_errors', 'On');
 
-    require 'Slim/Slim.php';  
+    require 'Slim/Slim.php';
     \Slim\Slim::registerAutoloader();
 
-    echo "<h1>Welcome to proteilysis!</h1>";
+    $app = new \Slim\Slim(array(
+        'debug' => true
+    ));
+
+    // ROUTES
+
+    $app->get('/', function () {
+        echo "<h1>Welcome to Proteilysis!</h1>";
+    });
+
+    $app->get('/hello/:name', function ($name) {
+        echo "Hello, $name";
+    });
+
+    $app->run();
 ?>

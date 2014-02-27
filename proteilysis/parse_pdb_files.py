@@ -3,7 +3,7 @@
 import os
 from os.path import join as pjoin
 import json
-from libs.PDBParser import PDBParser
+from PDBParser import PDBParser
 import config
 
 

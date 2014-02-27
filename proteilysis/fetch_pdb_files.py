@@ -2,7 +2,7 @@
 
 import os
 from sys import argv
-from libs.PDBParser import utils
+from PDBParser import utils
 import config
 
 
