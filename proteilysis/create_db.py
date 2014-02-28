@@ -9,14 +9,9 @@ def main():
     if config.DEBUG:
         print 'STEP 1. Creating new DB'
 
-    call([
-        'mysqladmin',
-        '-u', 
-        'root',
-        '--password={}'.format(config.DATABASE['root_pass']),
-        'create',
-        config.DATABASE['name']
-    ])
+    call('mysqladmin -u root --password={root_pass} create {db}'.format(
+            root_pass=config.DATABASE['root_pass'], db=config.DATABASE['name']
+        ), shell=True)
 
     # creating user responsible for managing the database
     if config.DEBUG:
