@@ -6,7 +6,7 @@
     $BASE_URL = '';
 
     require_once('database.php');
-    // require_once('session.php');
+    require_once('session.php');
     // require_once('smarty.php');
 
     function returnErrorJSON() {
