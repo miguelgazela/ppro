@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <h1>List of proteins</h1>
+  <hr>
+  {% for user in users %}
+    * {{ user.name }}
+  {% else %}
+    No proteins have been found.
+  {% endfor %}
+</div>
+
+{% endblock %}

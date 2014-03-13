@@ -25,8 +25,8 @@
         $app->render('index.html');
     });
 
-    $app->get('/hello/:name', function ($name) use ($app) {
-        $app->render('index.html', array('name' => $name));
+    $app->get('/proteins', function () use ($app) {
+        $app->render('proteins/list.html');
     });
 
     $app->run();
