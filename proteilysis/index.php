@@ -1,6 +1,8 @@
 <?php
     ini_set('display_errors', 'On');
 
+    require_once('Database/protein.php');
+
     require 'lib/Slim/Slim.php';
     \Slim\Slim::registerAutoloader();
 
@@ -26,6 +28,7 @@
     });
 
     $app->get('/proteins', function () use ($app) {
+
         $app->render('proteins/list.html');
     });
 
