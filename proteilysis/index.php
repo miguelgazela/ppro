@@ -16,6 +16,7 @@
     ));
 
     $view = $app->view();
+    
     $view->parserOptions = array(
         'debug' => true,
         'cache' => dirname(__FILE__) . '/cache'
