@@ -38,34 +38,6 @@ $ grunt serve
 
 ### Installation
 
-1. Install [pip](http://pip.readthedocs.org/en/latest/installing.html)
-
-2. Install [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)
-```sh
-$ pip install virtualenvwrapper
-```
-
-3. After virtualenvwrapper is installed, add the following to your .bash_profile
-```sh
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/directory-you-do-development-in
-source /usr/local/bin/virtualenvwrapper.sh
-```
-
-4. Create a new virtual environment
-```sh
-$ mkvirtualenv proteylysis
-```
-
-5. Navigate to the repo folder
-```sh
-$ cd ppro
-```
-
-6. Install dependencies
-```sh
-$ pip install -r requirements.txt
-```
 
 ## Related Resources
 
