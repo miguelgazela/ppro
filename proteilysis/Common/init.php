@@ -2,7 +2,7 @@
     // This file is included in every page
 
     // Define some base paths
-    $BASE_PATH = '';
+    $BASE_PATH = 'http://localhost:8888/ppro/proteilysis/';
     $BASE_URL = '';
 
     require_once('database.php');

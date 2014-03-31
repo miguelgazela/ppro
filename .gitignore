@@ -2,3 +2,5 @@
 *.pyo
 data
 pdb_*/
+proteilysis/cache/
+*.sql
