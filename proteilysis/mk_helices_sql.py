@@ -36,7 +36,7 @@ def main():
 
                         helix_type = HELIX_TYPES[str(helix['helixClass'])]
                         sql_file.write(config.SQL_TEMPLATES['INSERT_HELIX'].format(
-                            proteinID=1,
+                            structureID=helix['structureID'],
                             comment=helix['comment'],
                             helixClass=helix['helixClass'],
                             endICode=helix['endICode'],

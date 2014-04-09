@@ -21,7 +21,7 @@ def main():
                         if sheet['sense'] == 0:
                             sql_file.write(
                                 config.SQL_TEMPLATES['INSERT_INCOMPLETE_SHEET'].format(
-                                    proteinID=1, # TODO temporary fix
+                                    structureID=sheet['structureID'],
                                     numStrands=sheet['numStrands'],
                                     endICode=sheet['endICode'],
                                     sense=sheet['sense'],
@@ -38,7 +38,7 @@ def main():
                         else:
                             sql_file.write(
                                 config.SQL_TEMPLATES['INSERT_COMPLETE_SHEET'].format(
-                                    proteinID=1, # TODO temporary fix
+                                    structureID=sheet['structureID'],
                                     numStrands=sheet['numStrands'],
                                     endICode=sheet['endICode'],
                                     sense=sheet['sense'],

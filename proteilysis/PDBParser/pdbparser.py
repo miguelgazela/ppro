@@ -8,8 +8,9 @@ class PDBParser(object):
     the received structure.
     """
 
-    def __init__(self, content=''):
+    def __init__(self, structureID, content=''):
         self.content = content
+        self.structureID = structureID
         self.helices_records = []
         self.sheets_records = []
         self.sequence_records = []
@@ -47,6 +48,7 @@ class PDBParser(object):
             inc += 1
 
             helix = {
+                'structureID': self.structureID,
                 'serNum': serNum,
                 'helixID': record[11:14],
                 'initResName': record[15:18],
@@ -92,7 +94,8 @@ class PDBParser(object):
 
             seq = {
                 'serNum': serNum, 'chainID': chainID,
-                'numRes': numRes, 'residues': residues
+                'numRes': numRes, 'residues': residues,
+                'structureID': self.structureID
             }
             self.sequence.append(seq)
 
@@ -105,6 +108,7 @@ class PDBParser(object):
         for record in self.sheets_records:
 
             sheet  = {
+                'structureID': self.structureID,
                 'strand': int(record[7:10]),
                 'sheetID': record[11:14],
                 'numStrands': int(record[14:16]),

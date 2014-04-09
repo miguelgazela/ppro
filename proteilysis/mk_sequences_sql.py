@@ -20,7 +20,7 @@ def main():
 
                     for seq in sequences:
                         sql_file.write(config.SQL_TEMPLATES['INSERT_SEQ'].format(
-                            proteinID=1,  # TODO temporary
+                            structureID=seq['structureID'],
                             serNum=seq['serNum'],
                             chainID=seq['chainID'],
                             numRes=seq['numRes'],

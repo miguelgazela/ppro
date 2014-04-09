@@ -19,7 +19,7 @@ def main():
     call('python create_db_tables.py', shell=True)
 
     # fetch pdb files contained in pisces list
-    call('python fetch_pdb_files.py {}'.format(argv[1]), shell=True)
+    # call('python fetch_pdb_files.py {}'.format(argv[1]), shell=True)
 
     # parse the previous files for info
     call('python parse_pdb_files.py', shell=True)

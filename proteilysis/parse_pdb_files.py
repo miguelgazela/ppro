@@ -39,7 +39,7 @@ def main():
             with open(pjoin(config.PATHS['PDB_FILE_DIR'], filename)) as fin:
                 content = fin.read()
             
-            parser = PDBParser(content)
+            parser = PDBParser(filename, content)
             save_json(pjoin(config.PATHS['HELICES_DIR'], filename), parser.helices)
             save_json(pjoin(config.PATHS['SHEETS_DIR'], filename), parser.sheets)
             save_json(pjoin(config.PATHS['SEQUENCE_DIR'], filename), parser.sequence)
