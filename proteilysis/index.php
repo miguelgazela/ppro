@@ -33,5 +33,18 @@
         $app->render('proteins/list.html');
     });
 
+
+    /* Temporary stuff for my LGP project */
+    $app->get('/lgp/products/:productId', function ($productId) use ($app) {
+        $result = array(
+            "id" => $productId,
+            "name" => "Product #".$productId,
+            "description" => "The longer description for the product",
+            "smallDescription" => "The smaller description for the product"
+        );
+        header("Content-Type: application/json");
+        echo json_encode($result);
+    });
+
     $app->run();
 ?>
