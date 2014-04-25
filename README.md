@@ -5,7 +5,7 @@ Programming Paradigms class materials.
 
 ## Programming Language Tutorial
 
-Tutorial about the [Io](http://iolanguage.org/) programming language. Uses the [reveal.js](https://github.com/hakimel/reveal.js) html presentation framework.
+Tutorial about the [Go](http://golang.org/) programming language. Uses the [reveal.js](https://github.com/hakimel/reveal.js) html presentation framework.
 
 
 ### Installation
