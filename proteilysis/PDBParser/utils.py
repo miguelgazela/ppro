@@ -26,7 +26,7 @@ def parse_pisces_file(filename):
         with open(filename) as fin:
             lines = fin.read().splitlines()
             return [line.strip()[:4]
-                        for line in lines if re.search('^[A-Z0-9]{5}', line)]
+                    for line in lines if re.search('^[A-Z0-9]{5}', line)]
     except IOError:
         return None
 
@@ -38,7 +38,12 @@ def idmapping(id):
     content = requests.get(const.ID_MAPPING_URL,
         params={'from': 'PDB_ID', 'to': 'ACC', 'format': 'tab', 'query': id})
     
-    return content.text
+    content = content.text.split()
+
+    if content[-1] != 'To':
+        return content[-1]
+    else:
+        return ""
 
 
     

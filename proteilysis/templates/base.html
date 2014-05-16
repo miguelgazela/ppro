@@ -8,11 +8,11 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Proteilysis - Index</title>
+    <title>{% block title %}Proteilysis{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/global.css" rel="stylesheet">
+    <link href="{{baseUrl}}/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{baseUrl}}/static/css/global.css" rel="stylesheet">
 
   </head>
 
@@ -20,11 +20,12 @@
 
     <div class="container">
       <div class="header">
+        {% block nav %}
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Proteins</a></li>
-          <li><a href="#">Contact</a></li>
+          <li class="active"><a href="{{baseUrl}}">Home</a></li>
+          <li><a href="{{baseUrl}}/proteins">Proteins</a></li>
         </ul>
+        {% endblock %}
         <h3 class="text-muted">Proteilysis</h3>
       </div>
 
@@ -36,6 +37,8 @@
 
     </div> <!-- /container -->
 
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="{{baseUrl}}/static/js/production.min.js"></script>
 
   </body>
 </html>

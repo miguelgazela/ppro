@@ -3,11 +3,11 @@
 
     // Define some base paths
     $BASE_PATH = '/Users/migueloliveira/Dropbox/projects/ppro/proteilysis/';
-    $BASE_URL = 'http://localhost:8888/ppro/proteilysis/';
+    $BASE_URL = 'http://localhost:8888/ppro/proteilysis';
 
     require_once('database.php');
     require_once('session.php');
-    // require_once('smarty.php');
+    require_once('DatabaseException.php');
 
     function returnErrorJSON() {
         if(func_num_args() < 3 && func_num_args() > 4) {

@@ -3,10 +3,13 @@
 import os
 import config
 import json
-
+from os.path import join as pjoin
 
 def main():
-    with open(config.FILENAMES['SEQ_SQL'], 'w') as sql_file:
+    if not os.path.isdir(config.PATHS['SQL_DIR']):
+        os.mkdir(config.PATHS['SQL_DIR'])
+
+    with open(pjoin(config.PATHS['SQL_DIR'], config.FILENAMES['SEQ_SQL']), 'w') as sql_file:
 
         for root, dirs, files in os.walk(config.PATHS['SEQUENCE_DIR']):
             for filename in files:

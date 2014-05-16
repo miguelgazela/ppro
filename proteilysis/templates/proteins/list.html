@@ -1,15 +1,51 @@
 {% extends 'base.html' %}
 
+{% block title %}Proteilysis - Proteins{% endblock %}
+
+{% block nav %}
+<ul class="nav nav-pills pull-right">
+  <li><a href="{{baseUrl}}">Home</a></li>
+  <li class="active"><a href="{{baseUrl}}/proteins">Proteins</a></li>
+</ul>
+{% endblock %}
+
+
 {% block content %}
 
 <div class="container">
-  <h1>List of proteins</h1>
-  <hr>
-  {% for user in users %}
-    * {{ user.name }}
+  <div class="page-header">
+    <h2>List of proteins</h2>
+      <div class="btn-group">
+        <a id="list-switch" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list"></span> List</a>
+        <a id="grid-switch" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th"></span> Grid</a>
+      </div>
+  </div>
+
+  {% if proteins %}
+  <table class="table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>PDB Id</th>
+        <th>Name</th>
+        <th>UniprotKB Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for protein in proteins %}
+        <tr>
+          <td></td>
+          <td>{{protein.structureID}}</td>
+          <td><a href="{{baseUrl}}/proteins/{{protein.accID}}">Protein name</a></td>
+          <td>{{protein.accID}}</td>
+        </tr> 
+      {% endfor %}
+    </tbody>
+  </table>
   {% else %}
-    No proteins have been found.
-  {% endfor %}
+  No proteins have been found
+  {% endif %}
+
 </div>
 
 {% endblock %}

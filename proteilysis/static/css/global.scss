@@ -20,10 +20,6 @@ body {
     padding-right: 0;
     padding-left: 0;
   }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
@@ -33,12 +29,6 @@ body {
 @media screen and (min-width: 992px) {
   .container {
     max-width: 970px;
-  }
-}
-
-@media screen and (min-width: 1170px) {
-  .container {
-    max-width: 1130px;
   }
 }
 
@@ -77,10 +67,17 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  padding: 14px 24px;
-  font-size: 21px;
+  margin-top: 20px;
+
+  .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+  }
+
+  .form-control {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 /* Supporting marketing content */
