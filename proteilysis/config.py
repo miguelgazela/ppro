@@ -26,7 +26,7 @@ FILENAMES = {
 
 
 SQL_TEMPLATES = {
-    'INSERT_PROTEIN': "INSERT INTO Protein (structureID, accID) VALUES ('{structureID}', '{accID}');\n",
+    'INSERT_PROTEIN': "INSERT INTO Protein (pdbId, uniprotkbId) VALUES ('{pdbId}', '{uniprotkbId}');\n",
 
     'INSERT_HELIX': "INSERT INTO Helix (structureID, helixClass, endICode, helixID, endSeqNum, initSeqNum, initResName, serNum, initChainID, initICode, length, endChainID, endResName, type) VALUES ('{structureID}', {helixClass}, '{endICode}', '{helixID}', {endSeqNum}, {initSeqNum}, '{initResName}', {serNum}, '{initChainID}', '{initICode}', {length}, '{endChainID}', '{endResName}', '{type}');\n",
 

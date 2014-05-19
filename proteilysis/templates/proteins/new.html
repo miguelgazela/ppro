@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Proteilysis - Add protein{% endblock %}
+
+{% block nav %}
+<ul class="nav nav-pills pull-right">
+  <li><a href="{{baseUrl}}">Home</a></li>
+  <li><a href="{{baseUrl}}/proteins">Proteins</a></li>
+  <li class="active"><a href="{{baseUrl}}/proteins/new">Add protein</a></li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="page-header">
+    <h2>Add new proteins</h2>
+  </div>
+
+  <form action="{{baseUrl}}/proteins/new" role="form" method="POST">
+
+    <div class="form-group">
+      <label for="typeId">Choose the type of Ids</label>
+      <div class="radio">
+        <label>
+          <input type="radio" name="typeId" id="optionsRadios1" value="pdb" checked>
+          PDB
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="typeId" id="optionsRadios2" value="uniprotkb">
+          UnitProtKB
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputListIds">List of Ids</label>
+      <textarea name="list-ids" class="form-control" id="" cols="30" rows="6" placeholder="Paste here the list of ids"></textarea>
+      <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Add proteins</button>
+    </div>
+
+  </form>
+
+</div>
+
+{% endblock %}

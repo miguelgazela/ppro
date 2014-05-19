@@ -6,6 +6,7 @@
 <ul class="nav nav-pills pull-right">
   <li><a href="{{baseUrl}}">Home</a></li>
   <li class="active"><a href="{{baseUrl}}/proteins">Proteins</a></li>
+  <li><a href="{{baseUrl}}/proteins/new">Add protein</a></li>
 </ul>
 {% endblock %}
 
@@ -35,9 +36,9 @@
       {% for protein in proteins %}
         <tr>
           <td></td>
-          <td>{{protein.structureID}}</td>
-          <td><a href="{{baseUrl}}/proteins/{{protein.accID}}">Protein name</a></td>
-          <td>{{protein.accID}}</td>
+          <td>{{protein.pdbId}}</td>
+          <td><a href="{{baseUrl}}/proteins/{{protein.uniprotkbId}}">Protein name</a></td>
+          <td>{{protein.uniprotkbId}}</td>
         </tr> 
       {% endfor %}
     </tbody>

@@ -14,8 +14,8 @@ def main():
 		for root, dirs, files in os.walk(config.PATHS['PDB_FILE_DIR']):
 			for filename in files:
 				sql_file.write(config.SQL_TEMPLATES['INSERT_PROTEIN'].format(
-					structureID=filename,
-					accID=utils.idmapping(filename)
+					pdbId=filename,
+					uniprotkbId=utils.idmapping(filename)
 				))
 
 if __name__ == "__main__":
