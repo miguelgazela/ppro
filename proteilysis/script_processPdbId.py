@@ -10,4 +10,9 @@ pdb_id = argv[1]
 # with open("new_file.txt", "w") as fout:
 # 	fout.write("THis worked!")
 
-print pdb_id
+print "Hello world!"
+
+friends = ["Miugel", "Nelson"]
+
+for friend in friends:
+	print friend

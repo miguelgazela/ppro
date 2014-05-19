@@ -116,11 +116,12 @@
                     } else {
                         $result[$id]['state'] = "NOT_EXISTS";
 
-                        $command = escapeshellcmd('python '.$BASE_PATH.'script_processPdbId.py '.$id);
-                        $result[$id]['cmd'] = $command;
-                        $output = exec($command);
+                        // $command = escapeshellcmd('python '.$BASE_PATH.'script_processPdbId.py '.$id);
+                        // $result[$id]['cmd'] = $command;
+                        $output = array();
+                        exec("/Users/migueloliveira/Dropbox/projects/ppro/proteilysis/script_processPdbId.py", $output);
 
-                        $result[$id]['script_result'] = $output;
+                        var_dump($output);
                     }
                 } catch (PDOException $e) {
                     echo "Error! " . $e->getMessage() . "<br/>";
@@ -128,7 +129,7 @@
                 }
             }
 
-            echo json_encode(array('data' => $result));
+            // echo json_encode(array('data' => $result));
         }
     });
 
