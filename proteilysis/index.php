@@ -118,7 +118,7 @@
 
                         $command = escapeshellcmd('python '.$BASE_PATH.'script_processPdbId.py '.$id);
                         $result[$id]['cmd'] = $command;
-                        $output = shell_exec($command);
+                        $output = exec($command);
 
                         $result[$id]['script_result'] = $output;
                     }
