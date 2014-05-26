@@ -2,5 +2,5 @@
 *.pyo
 data
 pdb_*/
-proteilysis/cache/
+proteilysis_php/
 *.sql

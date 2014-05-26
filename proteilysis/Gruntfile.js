@@ -7,16 +7,16 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: [
-                    'static/js/*.js' // All JS files in the JS folder
+                    'proteil/static/js/*.js' // All JS files in the JS folder
                 ],
-                dest: 'static/js/production.js',
+                dest: 'proteil/static/js/production.js',
             }
         },
 
         uglify: {
             build: {
-                src: 'static/js/production.js',
-                dest: 'static/js/production.min.js'
+                src: 'proteil/static/js/production.js',
+                dest: 'proteil/static/js/production.min.js'
             }
         },
 
@@ -24,9 +24,9 @@ module.exports = function(grunt) {
             dynamic: {
                 files: [{
                     expand: true,
-                    cwd: 'static/images/',
+                    cwd: 'proteil/static/images/',
                     src: ['**/*.{png,jpg,gif}'],
-                    dest: 'static/images/'
+                    dest: 'proteil/static/images/'
                 }]
             }
         },
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             },
 
             scripts: {
-                files: ['static/js/*.js'],
+                files: ['proteil/static/js/*.js'],
                 tasks: ['concat', 'uglify'],
                 options: {
                     spawn: false,
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
             },
 
             css: {
-                files: ['static/css/*.scss'],
+                files: ['proteil/static/css/*.scss'],
                 tasks: ['sass'],
                 options: {
                     spawn: false,
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'static/css/global.css': 'static/css/global.scss'
+                    'proteil/static/css/global.css': 'proteil/static/css/global.scss'
                 }
             }
         }
