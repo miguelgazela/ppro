@@ -45,6 +45,36 @@
         $app->render('index.html', array("baseUrl" => $BASE_URL));
     });
 
+    $app->get('/script', function () use ($app, $BASE_URL) {
+        // phpinfo();
+        // $output = array();
+        // exec("python /Users/migueloliveira/Dropbox/projects/ppro/proteilysis/script_processPdbId.py 1AEP", $output);
+        // echo var_dump($output);
+        echo "Starting script\n";
+
+        $descriptorspec = array(
+           0 => array("pipe", "r"),
+           1 => array("pipe", "w"),
+           2 => array("file", "error.log", "a")
+        );
+
+        $process = proc_open('python /Users/migueloliveira/Dropbox/projects/ppro/proteilysis/script_processPdbId.py', $descriptorspec, $pipes);
+
+        if (is_resource($process)) {
+
+            echo "Has resource.\n";
+
+          // print pipe output
+          echo stream_get_contents($pipes[1]);
+
+          // close pipe
+          fclose($pipes[1]);
+
+          // close process
+          proc_close($process);
+        }
+    });
+
 
     $app->get('/proteins', function () use ($app, $db, $BASE_URL) {
         $stmt = $db->prepare("select * from protein");
