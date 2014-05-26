@@ -7,7 +7,6 @@
 
     require_once('database.php');
     require_once('session.php');
-    require_once('DatabaseException.php');
 
     function returnErrorJSON() {
         if(func_num_args() < 3 && func_num_args() > 4) {
