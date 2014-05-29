@@ -1,4 +1,10 @@
 /* Space out content a bit */
+
+$error_color: #a94442;
+$success_color: #3c763d;
+
+
+
 body {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -91,3 +97,24 @@ textarea {
 .marketing p + h4 {
   margin-top: 28px;
 }
+
+.card {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin: 5px 0;
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.errorlist {
+  color: $error_color;
+  margin-top: 5px;
+}
+
+.exists {
+  color: $success_color;
+}
+
+

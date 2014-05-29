@@ -7,16 +7,16 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: [
-                    'proteil/static/js/*.js' // All JS files in the JS folder
+                    'proteil/static/proteil/js/*.js' // All JS files in the JS folder
                 ],
-                dest: 'proteil/static/js/production.js',
+                dest: 'proteil/static/proteil/js/dist/production.js',
             }
         },
 
         uglify: {
             build: {
-                src: 'proteil/static/js/production.js',
-                dest: 'proteil/static/js/production.min.js'
+                src: 'proteil/static/proteil/js/dist/production.js',
+                dest: 'proteil/static/proteil/js/dist/production.min.js'
             }
         },
 
@@ -24,9 +24,9 @@ module.exports = function(grunt) {
             dynamic: {
                 files: [{
                     expand: true,
-                    cwd: 'proteil/static/images/',
+                    cwd: 'proteil/static/proteil/images/',
                     src: ['**/*.{png,jpg,gif}'],
-                    dest: 'proteil/static/images/'
+                    dest: 'proteil/static/proteil/images/'
                 }]
             }
         },
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             },
 
             scripts: {
-                files: ['proteil/static/js/*.js'],
+                files: ['proteil/static/proteil/js/*.js'],
                 tasks: ['concat', 'uglify'],
                 options: {
                     spawn: false,
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
             },
 
             css: {
-                files: ['proteil/static/css/*.scss'],
+                files: ['proteil/static/proteil/css/*.scss'],
                 tasks: ['sass'],
                 options: {
                     spawn: false,
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'proteil/static/css/global.css': 'proteil/static/css/global.scss'
+                    'proteil/static/proteil/css/global.css': 'proteil/static/proteil/css/global.scss'
                 }
             }
         }

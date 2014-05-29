@@ -19,12 +19,25 @@
 
   <body>
 
-    {% include 'proteil/_header.html' %}
+
+    <div class="header">
+      <div class="container">
+        {% block nav %}
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'protein_list' %}">Proteins</a></li>
+          <li><a href="{% url 'protein_add' %}">Add proteins</a></li>
+        </ul>
+        {% endblock %}
+        <h3 class="text-muted">Proteilysis</h3>
+      </div>
+    </div>
+
     {% block content %}{% endblock %}
     {% include 'proteil/_footer.html' %}
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="{{baseUrl}}/static/js/production.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}proteil/js/production.min.js"></script>
 
   </body>
 </html>

@@ -1,0 +1,40 @@
+{% extends 'proteil/_base.html' %}
+
+{% block title %}Proteilysis - Identified Ids{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="page-header">
+    <h3>File upload results</h3>
+  </div>
+
+  <h4># recognized protein ids: {{ids|length}}</h4>
+  <h4># existing proteins: {{existing}}</h4>
+
+  <hr>
+
+  {% if ids %}
+  <div class="row">
+    {% for item in ids %}
+    <div class="col-xs-4 col-sm-3">
+      <div class="card">
+        <h3 class="{% if item.exists %}exists{% endif %}">ID: {{item.id}}</h3>
+        {% if item.exists %}
+          <p>Exists in the database.</p>
+        {% else %}
+          <p>Not present in the database.</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+    
+  {% else %}
+  <p>No valid Ids where recognized</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}
