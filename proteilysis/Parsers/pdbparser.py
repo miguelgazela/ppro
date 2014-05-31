@@ -73,6 +73,7 @@ class PdbParser(object):
                 'comment': record[40:70],
                 'length': int(record[71:76])
             }
+
             self.helices.append(helix)
 
 
@@ -80,10 +81,10 @@ class PdbParser(object):
         """
         Parses the sequence records and builds a Sequence object
         """
-        self.sequence = {}
+        self.sequence = []
         INITIAL_COLUMN = 19
         FINAL_COLUMN = 22
-        chainId
+        residues = []
 
         for record in self.sequence_records:
             serNum = int(record[7:10])
@@ -97,19 +98,18 @@ class PdbParser(object):
             else:
                 read = 13 * (serNum - 1)
                 rec_residues = (numRes - read <= 13) and (numRes - read) or 13
-
-            residues = []
+            
             for i in range(rec_residues):
                 residues.append(
                     record[(INITIAL_COLUMN + 4 * i):(FINAL_COLUMN + 4 * i)])
 
-            seq = {
-                'serNum': serNum, 'chainID': chainID,
-                'numRes': numRes, 'residues': residues,
-                'structureID': self.structureID
-            }
-        
-        self.sequence.append(seq)
+            if len(residues) == numRes:
+                seq = {
+                    'chainID': chainID, 'numRes': numRes,
+                    'residues': residues, 'structureID': self.structureID
+                }
+                residues = []
+                self.sequence.append(seq)
 
     def _build_sheets(self):
         """

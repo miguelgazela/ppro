@@ -28,4 +28,5 @@ SOFTWARE.
 """
 
 from pdbparser import PdbParser
+from unitprotparser import UnitprotParser
 from utils import fetch_pdb_file

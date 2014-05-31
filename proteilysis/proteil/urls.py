@@ -8,5 +8,7 @@ urlpatterns = patterns('',
 
 	# util views
 	url(r'^api/utils/upload_pisces_file$', views.upload_pisces_file, name="upload_pisces_file"),
+	url(r'^api/utils/upload_ids_list$', views.upload_ids_list, name="upload_ids_list"),
+	url(r'^api/proteins/add/(?P<id>[a-zA-Z0-9]{4,6})$', views.add_protein, name="add_protein"),
 )
 

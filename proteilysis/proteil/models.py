@@ -1,15 +1,25 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
 class Protein(models.Model):
-    pdbId = models.CharField(max_length=4, unique=True)
-    uniprotkbId = models.CharField(max_length=6, unique=True)
-    pdb_classification = models.CharField(max_length=256)
-    pdb_title = models.CharField(max_length=256)
+    uniprotkb_id = models.CharField(max_length=6)
+    created = models.DateTimeField(auto_now_add=True, default=datetime.now())
 
     def __unicode__(self):
-        return "{} - {} - {}".format(self.pdb_title, self.pdbId, self.uniprotkbId)
+        return "{}".format(self.uniprotkb_id)
+
+
+class Structure(models.Model):
+    protein = models.ForeignKey('Protein', null=True)
+    pdb_id = models.CharField(max_length=4, unique=True)
+    classification = models.CharField(max_length=256)
+    title = models.CharField(max_length=256)
+    created = models.DateTimeField(auto_now_add=True, default=datetime.now())
+
+    def __unicode__(self):
+        return "{} - {}".format(self.pdb_id, self.title)
 
 
 class Helix(models.Model):
@@ -27,7 +37,7 @@ class Helix(models.Model):
         (9, 'Polyproline'),
     )
 
-    protein_id = models.ForeignKey('Protein')
+    structure = models.ForeignKey('Structure')
     comment = models.CharField(max_length=256)
     helix_class = models.PositiveSmallIntegerField()
     end_i_code = models.CharField(max_length=1)
@@ -48,7 +58,7 @@ class Helix(models.Model):
 
 
 class Sheet(models.Model):
-    protein_id = models.ForeignKey('Protein')
+    structure = models.ForeignKey('Structure')
     strand = models.PositiveSmallIntegerField()
     sheet_id = models.CharField(max_length=3)
     numStrands = models.PositiveSmallIntegerField()
@@ -60,13 +70,13 @@ class Sheet(models.Model):
     end_chain_id = models.CharField(max_length=1)
     end_seq_num = models.PositiveSmallIntegerField()
     end_i_code = models.CharField(max_length=1)
-    sense = models.PositiveSmallIntegerField()
-    cur_atom = models.CharField(max_length=3, null=True)
+    sense = models.SmallIntegerField()
+    cur_atom = models.CharField(max_length=4, null=True)
     cur_res_name = models.CharField(max_length=3, null=True)
     cur_chain_id = models.CharField(max_length=1, null=True)
     cur_res_seq = models.PositiveSmallIntegerField(null=True)
     cur_i_code = models.CharField(max_length=1, null=True)
-    prev_atom = models.CharField(max_length=3, null=True)
+    prev_atom = models.CharField(max_length=4, null=True)
     prev_res_name = models.CharField(max_length=3, null=True)
     prev_chain_id = models.CharField(max_length=1, null=True)
     prev_res_seq = models.PositiveSmallIntegerField(null=True)
@@ -76,11 +86,10 @@ class Sheet(models.Model):
         return "{} - {}".format(self.sheet_id, self.protein_id)
 
 class Sequence(models.Model):
-    protein_id = models.ForeignKey('Protein')
-    ser_num = models.PositiveSmallIntegerField()
+    structure = models.ForeignKey('Structure')
     chain_id = models.CharField(max_length=1)
     num_res = models.PositiveSmallIntegerField()
-    residues = models.CharField(max_length=51)
+    residues = models.TextField()
 
     def __unicode__(self):
         return "{}".format(self.residues)

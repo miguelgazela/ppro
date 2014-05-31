@@ -6,7 +6,7 @@
 <ul class="nav nav-pills pull-right">
   <li><a href="/">Home</a></li>
   <li class="active"><a href="{% url 'protein_list' %}">Proteins</a></li>
-  <li><a href="{% url 'protein_add' %}">Add protein</a></li>
+  <li><a href="{% url 'protein_add' %}">Add proteins</a></li>
 </ul>
 {% endblock %}
 
@@ -16,29 +16,27 @@
 <div class="container">
   <div class="page-header">
     <h2>List of proteins</h2>
-      <div class="btn-group">
+      <!-- <div class="btn-group">
         <a id="list-switch" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list"></span> List</a>
         <a id="grid-switch" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th"></span> Grid</a>
-      </div>
+      </div> -->
   </div>
 
   {% if proteins %}
-  <table class="table-hover table-condensed">
+  <table class="table table-hover">
     <thead>
       <tr>
-        <th>#</th>
-        <th>PDB Id</th>
-        <th>Name</th>
-        <th>UniprotKB Id</th>
+        <th>UniprotKB ID</th>
+        <th>Title</th>
+        <th>Classification</th>
       </tr>
     </thead>
     <tbody>
       {% for protein in proteins %}
         <tr>
-          <td></td>
-          <td>{{protein.pdbId}}</td>
-          <td><a href="#">Protein name</a></td>
-          <td>{{protein.uniprotkbId}}</td>
+          <td>{{protein.uniprotkb_id}}</td>
+          <td><a href="#">{{protein.title|truncatechars:60}}</a></td>
+          <td>{{protein.classification}}</td>
         </tr> 
       {% endfor %}
     </tbody>

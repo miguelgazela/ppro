@@ -1,0 +1,84 @@
+{% extends 'proteil/_base.html' %}
+
+{% block title %}Proteilysis - Identified Ids{% endblock %}
+
+{% block nav %}
+<ul class="nav nav-pills pull-right">
+  <li><a href="/">Home</a></li>
+  <li><a href="{% url 'protein_list' %}">Proteins</a></li>
+  <li><a href="{% url 'protein_add' %}">Add proteins</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="page-header">
+    <h3>Upload results</h3>
+  </div>
+
+  <h4>Number of recognized ids: {{total}}</h4>
+  <h4>Number of existing ids: {{existing_ids|length}}</h4>
+  {% if total != existing_ids|length %}
+  <button type="button" class="btn btn-sm btn-success" onclick="addAllProteinsByPdbId()"><span class="glyphicon glyphicon-plus"></span> Add all non existing ids</button>
+
+  <div class="hide" id="pre-blocks">
+    <div class="page-header">
+      <h3>Request results</h3>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <pre id="request_output"></pre>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <pre id="response_output"></pre>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+
+  <div id="list-ids">
+  {% if non_existing_ids %}
+    <div class="page-header">
+      <h3>Non existing ids <span class="label label-primary">{{non_existing_ids|length}}</span></h3>
+    </div>
+    <div class="row">
+      {% for item in non_existing_ids %}
+        <div class="col-xs-4 col-sm-3">
+          <div class="card" data-id="{{item}}" data-exists="false">
+            <h3>ID: {{item|upper}}</h3>
+            <div class="alert alert-success hide"></div>
+            <div class="progress hide">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                <span class="sr-only">40% Complete (success)</span>
+              </div>
+            </div>
+            <button type="button" class="btn btn-sm btn-block btn-default" onclick="addProteinByPdbId(this)"><span class="glyphicon glyphicon-plus"></span> Add</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if existing_ids %}
+    <div class="page-header">
+      <h3>Existing ids <span class="label label-primary">{{existing_ids|length}}</span></h3>
+    </div>
+    <div class="row">
+      {% for item in existing_ids %}
+        <div class="col-xs-4 col-sm-3">
+          <div class="card" data-id="{{item}}" data-exists="true">
+            <h3 class="exists">ID: {{item|upper}}</h3>
+            <button type="button" class="btn btn-sm btn-block btn-default" onclick=""><span class="glyphicon glyphicon-zoom-in"></span> View</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  </div>
+
+</div>
+
+{% endblock %}
